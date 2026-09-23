@@ -60,3 +60,14 @@ docker compose up
 ```
 
 Compose loads `.env` from the project root and mounts `logs/` into the container.
+
+## Releases
+
+Merging a PR into `main` with a release label creates a Git tag and a GitHub release.
+
+Create these labels in GitHub (Settings → Labels):
+
+| Name            | Bump                          |
+|-----------------|-------------------------------|
+| `release:minor` | New features (v1.0.0 → v1.1.0) |
+| `release:fix`   | Bug fixes (v1.0.0 → v1.0.1)    |

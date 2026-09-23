@@ -48,9 +48,9 @@ Tests live in `tests/` mirroring the `src/` structure.
 ## Linting
 
 ```bash
-make lint
-# or
-uv run ruff check . --fix
+make lint       # ruff check --fix
+make format     # ruff format
+make typecheck  # mypy
 ```
 
 ## Docker

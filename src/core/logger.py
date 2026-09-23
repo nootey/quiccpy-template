@@ -22,7 +22,8 @@ class AppLogger:
         level = getattr(logging, config.level.upper(), logging.INFO)
 
         structlog.configure(
-            processors=_shared_processors + [structlog.stdlib.ProcessorFormatter.wrap_for_formatter],
+            processors=_shared_processors
+            + [structlog.stdlib.ProcessorFormatter.wrap_for_formatter],
             logger_factory=structlog.stdlib.LoggerFactory(),
             wrapper_class=structlog.stdlib.BoundLogger,
             cache_logger_on_first_use=True,
@@ -57,4 +58,5 @@ class AppLogger:
 
     @staticmethod
     def get(name: str) -> structlog.stdlib.BoundLogger:
-        return structlog.get_logger(name)
+        logger: structlog.stdlib.BoundLogger = structlog.get_logger(name)
+        return logger

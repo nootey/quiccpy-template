@@ -9,7 +9,6 @@ dependencies = [
     "colorama>=0.4.6",
     "pydantic>=2.0.0",
     "pydantic-settings>=2.0.0",
-    "ruff>=0.15.15",
 ]
 
 [dependency-groups]
@@ -17,8 +16,16 @@ dev = [
     "pytest>=8.0.0",
     "pytest-asyncio>=0.24.0",
     "pre-commit>=4.0.0",
+    "ruff>=0.15.15",
+    "mypy>=2.3.1",
 ]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+plugins = ["pydantic.mypy"]
+strict = true
+explicit_package_bases = true

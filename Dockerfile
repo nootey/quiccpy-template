@@ -21,8 +21,12 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PATH="/app/.venv/bin:$PATH"
 
-# Create storage directories
-RUN mkdir -p /app/storage/db /app/logs
+# Create non-root user and logs directory
+RUN useradd --create-home --uid 1000 app \
+    && mkdir -p /app/logs \
+    && chown -R app:app /app/logs
+
+USER app
 
 # Run the application
 CMD ["python", "-m", "main"]

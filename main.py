@@ -6,7 +6,7 @@ from src.core.logger import AppLogger
 
 async def main() -> None:
     AppLogger(LoggingConfig())
-    config = Config.from_yaml()
+    config = Config()
     log = AppLogger.get(__name__).bind(service="app")
     log.info("Config loaded", log_level=config.logging.level)
 

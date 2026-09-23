@@ -3,7 +3,8 @@ name: "Test"
 on:
   push:
     paths-ignore:
-      - 'deployment/**'
+      - 'Dockerfile'
+      - 'docker-compose.yaml'
       - '*.md'
       - 'storage/**'
       - 'logs/**'
@@ -12,7 +13,8 @@ on:
   workflow_dispatch:
   pull_request:
     paths-ignore:
-      - 'deployment/**'
+      - 'Dockerfile'
+      - 'docker-compose.yaml'
       - '*.md'
       - 'storage/**'
       - 'logs/**'

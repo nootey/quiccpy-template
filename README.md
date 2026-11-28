@@ -9,6 +9,22 @@ A generic Python project template using `uv`, `structlog`, `pydantic`, and `pyda
 
 ## Setup
 
+Clone the template:
+
+```bash
+git clone https://github.com/yourusername/quiccpy-template.git myapp
+cd myapp
+```
+
+Replace `quiccpy-start` with your app name. The name is in `pyproject.toml`, `uv.lock`, `docker-compose.yaml` and
+this README:
+
+```bash
+grep -rlI 'quiccpy-start' --exclude-dir=.git --exclude-dir=.venv . | xargs sed -i 's/quiccpy-start/myapp/g'
+```
+
+Then create the config and install the dependencies:
+
 ```bash
 cp .env.example .env
 uv sync --group dev

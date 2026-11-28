@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: app
+    container_name: quiccpy-start
     restart: unless-stopped
     env_file: .env
     volumes:

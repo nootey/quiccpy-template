@@ -17,9 +17,11 @@ _shared_processors: list[structlog.types.Processor] = [
 
 
 class AppLogger:
-    def __init__(self, config: LoggingConfig, log_dir: str = "logs") -> None:
+    def __init__(
+        self, config: LoggingConfig, json_output: bool = False, log_dir: str = "logs"
+    ) -> None:
         Path(log_dir).mkdir(parents=True, exist_ok=True)
-        level = getattr(logging, config.level.upper(), logging.INFO)
+        level = logging.getLevelNamesMapping()[config.level]
 
         structlog.configure(
             processors=_shared_processors
@@ -37,11 +39,17 @@ class AppLogger:
             ],
         )
 
+        console_renderer: structlog.types.Processor = structlog.dev.ConsoleRenderer(
+            colors=True
+        )
+        if json_output:
+            console_renderer = structlog.processors.JSONRenderer()
+
         console_formatter = structlog.stdlib.ProcessorFormatter(
             foreign_pre_chain=_shared_processors,
             processors=[
                 structlog.stdlib.ProcessorFormatter.remove_processors_meta,
-                structlog.dev.ConsoleRenderer(colors=True),
+                console_renderer,
             ],
         )
 

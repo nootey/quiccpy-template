@@ -23,17 +23,24 @@ make run
 uv run python -m main
 ```
 
+The app runs until it gets SIGINT (Ctrl+C) or SIGTERM (`docker stop`). Then it stops each task and exits cleanly.
+If one task fails, the app cancels the other tasks.
+
 ## Configuration
 
 Config is loaded from `.env`. See `.env.example` for all available fields.
 
 Variables use the `APP_` prefix and `__` as the nested delimiter.
 Real environment variables take priority over `.env`.
+The app does not start if a value is not valid.
 
 ```bash
 # Override logging level
 APP_LOGGING__LEVEL=DEBUG
 ```
+
+`APP_ENVIRONMENT` is `local`, `development` or `production`. In `production`, the app writes JSON logs to stdout.
+In the other environments, it writes colored text. The log file in `logs/` is always JSON.
 
 ## Testing
 

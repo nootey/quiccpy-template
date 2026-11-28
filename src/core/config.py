@@ -1,9 +1,11 @@
+from typing import Literal
+
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class LoggingConfig(BaseModel):
-    level: str = "INFO"
+    level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
 
 
 class Config(BaseSettings):
@@ -15,4 +17,5 @@ class Config(BaseSettings):
         env_nested_delimiter="__",
     )
 
+    environment: Literal["local", "development", "production"] = "local"
     logging: LoggingConfig = LoggingConfig()

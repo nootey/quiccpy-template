@@ -18,6 +18,7 @@ dev = [
     "pre-commit>=4.0.0",
     "ruff>=0.15.15",
     "mypy>=2.3.1",
+    "pytest-cov>=7.1.0",
 ]
 
 [tool.pytest.ini_options]
@@ -29,3 +30,15 @@ python_version = "3.11"
 plugins = ["pydantic.mypy"]
 strict = true
 explicit_package_bases = true
+
+[tool.ruff.lint]
+extend-select = ["I", "B", "UP", "S", "SIM", "ASYNC", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.coverage.run]
+source = ["."]
+omit = ["*/tests/*"]
+# Also measure the app when tests start it as a subprocess
+patch = ["subprocess"]

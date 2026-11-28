@@ -52,13 +52,21 @@ uv run --group dev pytest
 
 Tests live in `tests/` mirroring the `src/` structure.
 
+```bash
+make test-coverage  # coverage report in the terminal and in htmlcov/index.html
+```
+
 ## Linting
 
 ```bash
 make lint       # ruff check --fix
 make format     # ruff format
 make typecheck  # mypy
+make pre-push   # lint, format check, typecheck and tests, the same checks as CI
 ```
+
+Ruff config is in `pyproject.toml`. It adds import order, bug, upgrade, security, simplify and async rules to the
+defaults.
 
 ## Docker
 
